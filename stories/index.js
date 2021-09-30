@@ -15,6 +15,9 @@ import InterviewerListItem from "components/InterviewerListItem";
 
 import InterviewerList from "components/InterviewerList";
 
+import Appointment from "components/Appointment/index";
+
+// Button stories
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -70,6 +73,7 @@ storiesOf("DayList", module)
     <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
   ));
 
+// interviewer story
 const interviewer = {
   id: 1,
   name: "Sylvia Palmer",
@@ -129,3 +133,17 @@ storiesOf("InterviewerList", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
+
+// Appointment story
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }],
+  })
+  .add("Appointment", () => <Appointment />);
+
+storiesOf("Appointment", module)
+  .addParameters({
+    backgrounds: [{ name: "white", value: "#fff", default: true }],
+  })
+  .add("Appointment", () => <Appointment />)
+  .add("Appointment with Time", () => <Appointment time="12pm" />);
