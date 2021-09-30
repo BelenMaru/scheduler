@@ -4,12 +4,14 @@ import classNames from "classnames";
 
 import styles from "components/Button.scss";
 
+import Form from "components/Appointment/Form";
+
 export default function Button(props) {
-    const buttonClass = classNames("button", {
+  const buttonClass = classNames("button", {
     "button--confirm": props.confirm,
-    "button--danger": props.danger
-    })
-    
+    "button--danger": props.danger,
+  });
+
   return (
     <button
       className={buttonClass}
@@ -19,5 +21,4 @@ export default function Button(props) {
       {props.children}
     </button>
   );
-  
 }
