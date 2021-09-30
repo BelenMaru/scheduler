@@ -1,6 +1,7 @@
 import React from "react";
 
 import { storiesOf } from "@storybook/react";
+
 import { action } from "@storybook/addon-actions";
 
 import "index.scss";
@@ -22,6 +23,8 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 
 import Show from "components/Appointment/show";
+
+import Confirm from "components/Appointment/Confirm";
 
 // Button stories
 storiesOf("Button", module)
@@ -155,5 +158,12 @@ storiesOf("Appointment", module)
       interviewer={interviewer}
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
     />
   ));
