@@ -10,6 +10,8 @@ import axios from "axios";
 
 import { getInterview } from "helpers/selectors";
 
+import useVisualMode from "hooks/useVisualMode";
+
 const appointments = [
   {
     id: 1,
@@ -66,7 +68,7 @@ export default function Application(props) {
     appointments: {},
     interviewers: {},
   });
-  const dailyAppointments = [];
+  // const dailyAppointments = [];
   const setDay = (day) => setState({ ...state, day });
   // const setDays = (days) => setState((prev) => ({ ...prev, days }));
 

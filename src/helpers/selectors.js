@@ -1,5 +1,5 @@
-import Appointment from "components/Appointment";
-import React from "react";
+// import Appointment from "components/Appointment";
+// import React from "react";
 
 export function getAppointmentsForDay(state, day) {
   let appointmentsForDays = [];

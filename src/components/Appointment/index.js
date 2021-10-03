@@ -9,6 +9,8 @@ import Show from "components/Appointment/show";
 import Empty from "components/Appointment/Empty";
 
 export default function Appointment(props) {
+  const EMPTY = "EMPTY";
+  const SHOW = "SHOW";
   return (
     <article className="appointment">
       <Header time={props.time} />
