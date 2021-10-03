@@ -8,6 +8,8 @@ import Appointment from "./Appointment";
 
 import axios from "axios";
 
+import { getInterview } from "helpers/selectors";
+
 const appointments = [
   {
     id: 1,
@@ -62,6 +64,7 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {},
   });
   const dailyAppointments = [];
   const setDay = (day) => setState({ ...state, day });
@@ -80,15 +83,28 @@ export default function Application(props) {
           ...prev,
           days: all[0].data,
           appointments: all[1].data,
+          interviewers: all[1].data,
         }));
       }
     );
   }, []);
 
-  const appointmentSomething = dailyAppointments.map((appointment) => {
-    return <Appointment {...appointment} />;
-  });
+  // const appointmentSomething = dailyAppointments.map((appointment) => {
+  //   return <Appointment {...appointment} />;
+  // });
 
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={appointment.interview}
+      />
+    );
+  });
+  // });
   return (
     <main className="layout">
       <section className="sidebar">
@@ -108,7 +124,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointmentSomething}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
