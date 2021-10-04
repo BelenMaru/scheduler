@@ -32,3 +32,16 @@ export function getInterview(state, interview) {
 }
 
 // interview: { student: "Chad Takahashi", interviewer: 2 },
+
+export function getInterviewersForDay(state, day) {
+  let interviewersForDays = [];
+
+  const filtered = state.days.filter((Day) => Day.name === day);
+
+  if (filtered.length) {
+    const interviewers = filtered[0].interviewers.map(
+      (interviewer) => interviewers[interviewer]
+    );
+  }
+  return interviewersForDays;
+}

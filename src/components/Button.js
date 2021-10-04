@@ -2,7 +2,7 @@ import React from "react";
 
 import classNames from "classnames";
 
-import styles from "components/Button.scss";
+import "components/Button.scss";
 
 import Form from "components/Appointment/Form";
 
