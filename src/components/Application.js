@@ -12,6 +12,7 @@ import {
   getInterview,
   getAppointmentsForDay,
   getInterviewersForDay,
+  b,
 } from "helpers/selectors";
 
 const appointments = [
@@ -60,6 +61,39 @@ const appointments = [
 ];
 
 export default function Application(props) {
+  // creating appointment
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    return axios
+      .put(`/api/appointments/${id}`, {
+        interview,
+      })
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+        });
+      });
+  }
+
+  // Cancel intrview
+
+
+
+
+
+
+  
+
   // const [day, setDay] = useState(["Monday"]);
   // console.log(day);
   // const [days, setDays] = useState([]);
@@ -70,8 +104,9 @@ export default function Application(props) {
     appointments: {},
     interviewers: {},
   });
+
   // const dailyAppointments = [];
-  
+
   // to set state after mergining all useState in one variable
   const setDay = (day) => setState({ ...state, day });
   // const setDays = (days) => setState((prev) => ({ ...prev, days }));
@@ -92,7 +127,7 @@ export default function Application(props) {
         ...prev,
         days: all[0].data,
         appointments: all[1].data,
-        interviewers: all[1].data,
+        interviewers: all[2].data,
       }));
     });
   }, []);
@@ -103,6 +138,7 @@ export default function Application(props) {
 
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
         // key={appointment.id}
@@ -112,10 +148,10 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={appointment.interview}
+        bookInterview={bookInterview}
       />
     );
   });
-  // });
   return (
     <main className="layout">
       <section className="sidebar">
@@ -136,6 +172,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
+        {bookInterview}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
