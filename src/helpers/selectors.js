@@ -2,16 +2,26 @@
 // import React from "react";
 
 export function getAppointmentsForDay(state, day) {
-  let appointmentsForDays = [];
+  // let appointmentsForDays = [];
 
-  const filtered = state.days.filter((Day) => Day.name === day);
+  // const filtered = state.days.filter((Day) => Day.name === day);
 
-  if (filtered.length) {
-    const appointments = filtered[0].appointments.map(
-      (appointment) => appointments[appointment]
-    );
-  }
-  return appointmentsForDays;
+  // if (filtered.length) {
+  //   const appointment = filtered[0].appointments.map(
+  //     (appointment) => appointments[appointment]
+  //   );
+  // }
+  // return appointmentsForDays;
+
+  const filteredDays = state.days.filter((day_) => day_.name === day);
+  const appointmentArray =
+    filteredDays.length !== 0
+      ? filteredDays[0].appointments.map(
+          (element) => state.appointments[element]
+        )
+      : [];
+  return appointmentArray;
+  // }
 }
 
 export function getInterview(state, interview) {
@@ -34,14 +44,9 @@ export function getInterview(state, interview) {
 // interview: { student: "Chad Takahashi", interviewer: 2 },
 
 export function getInterviewersForDay(state, day) {
-  let interviewersForDays = [];
+  const foundDay = state.days.find((day_) => day_.name === day);
+  // const interviewerArray =
+  if (state.days.length === 0 || foundDay === undefined) return [];
 
-  const filtered = state.days.filter((Day) => Day.name === day);
-
-  if (filtered.length) {
-    const interviewers = filtered[0].interviewers.map(
-      (interviewer) => interviewers[interviewer]
-    );
-  }
-  return interviewersForDays;
+  return foundDay.interviewers.map((element) => state.interviewers[element]);
 }

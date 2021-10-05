@@ -9,21 +9,25 @@ import InterviewerListItem from "./InterviewerListItem";
 import Form from "components/Appointment/Form";
 
 export default function InterviewerList(props) {
-  const interviewers = props.interviewers.map((interviewer) => {
+  // console.log("interviewer from InterviewerList: >>>>>>>", interviewer);
+  let interviewersArray =[]
+  if (props.interviewers) {
+interviewersArray = props.interviewers.map((interviewer) => {
     return (
       <InterviewerListItem
         key={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        setInterviewer={props.setInterviewer}
+        setInterviewer={e => props.setInterviewer(interviewer.id)}
         selected={props.interviewer === interviewer.id}
       />
     );
-  });
+  })
+};
   return (
     <div className="interviewers">
       <div className="interviewers__header">Interviewer</div>
-      <div className="interviewers__list">{interviewers}</div>
+      <div className="interviewers__list">{interviewersArray}</div>
     </div>
   );
 }
