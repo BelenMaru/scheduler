@@ -84,7 +84,7 @@ export default function Application(props) {
       [id]: appointment,
     };
     return axios
-      .put(`/api/appointments/${id}`, {
+      .delete(`/api/appointments/${id}`, {
         interview,
       })
       .then((res) => {
@@ -98,22 +98,29 @@ export default function Application(props) {
   // const interviewrers = getInterviewersForDay(state, state.day);
   // console.log(interviewrers);
 
-  // Cancel intrview
+  // Cancel interview
   const cancelInterview = (id) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    return axios
-      .delete(`/api/appointments/${id}`, appointment)
-      .then((response) => {
-        if (response.status === 204) setState({ ...state, appointments });
-      });
+    const appointment = { ...state.appointments[id] };
+
+    appointment[id] = null;
+
+    return axios.delete(`/api/appointments/${id}`);
   };
+
+  //   const appointment = {
+  //     ...state.appointments[id],
+  //     interview: null,
+  //   };
+  //   const appointments = {
+  //     ...state.appointments,
+  //     [id]: appointment,
+  //   };
+  //   return axios
+  //     .delete(`/api/appointments/${id}`, appointment)
+  //     .then((response) => {
+  //       if (response.status === 204) setState({ ...state, appointments });
+  //     });
+  // };
 
   // const dailyAppointments = [];
 
@@ -163,6 +170,7 @@ export default function Application(props) {
         interview={interview}
         bookInterview={bookInterview}
         interviewers={interviewers}
+        cancelInterview={cancelInterview}
       />
     );
   });
