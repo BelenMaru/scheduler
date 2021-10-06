@@ -84,7 +84,7 @@ export default function Application(props) {
       [id]: appointment,
     };
     return axios
-      .delete(`/api/appointments/${id}`, {
+      .put(`/api/appointments/${id}`, {
         interview,
       })
       .then((res) => {
@@ -171,6 +171,7 @@ export default function Application(props) {
         bookInterview={bookInterview}
         interviewers={interviewers}
         cancelInterview={cancelInterview}
+       
       />
     );
   });
