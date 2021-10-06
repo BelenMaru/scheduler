@@ -16,6 +16,8 @@ import Status from "components/Appointment/Status";
 
 import Confirm from "components/Appointment/Confirm";
 
+import Error from "components/Appointment/Error";
+
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -24,6 +26,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const EDIT = "EDIT";
   const CONFIRM = "CONFIRM";
+  const ERROR_SAVE = "ERROR SAVE";
+  const ERROR_DELETE = "ERROR DELETE";
 
   // Saving appointments
   function save(name, interviewer) {
@@ -33,22 +37,20 @@ export default function Appointment(props) {
       interviewer,
     };
     transition(SAVING);
-    props.bookInterview(props.id, interview).then(
-      () => transition(SHOW),
-      (error) => {
-        console.log(save);
-      }
-    );
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVE, true));
   }
 
   // Delete appointments
   function remove() {
     transition(DELETING, true);
-    props.cancelInterview(props.id).then(() => {
-      transition(EMPTY);
-    });
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch((error) => transition(ERROR_DELETE, true));
   }
-
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -69,8 +71,9 @@ export default function Appointment(props) {
       )}
       {mode === CREATE && (
         <Form
+          interviewer=""
           interviewers={props.interviewers}
-          onCancel={() => back(EMPTY)}
+          onCancel={() => back()}
           onSave={save}
         />
       )}
@@ -92,6 +95,12 @@ export default function Appointment(props) {
           onConfirm={remove}
           onCancel={() => back()}
         />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not cancel appointment." onClose={() => back()} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message="Could not cancel appointment." onClose={() => back()} />
       )}
 
       {/* <Header time={props.time} />
