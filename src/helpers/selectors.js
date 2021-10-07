@@ -1,18 +1,4 @@
-// import Appointment from "components/Appointment";
-// import React from "react";
-
 export function getAppointmentsForDay(state, day) {
-  // let appointmentsForDays = [];
-
-  // const filtered = state.days.filter((Day) => Day.name === day);
-
-  // if (filtered.length) {
-  //   const appointment = filtered[0].appointments.map(
-  //     (appointment) => appointments[appointment]
-  //   );
-  // }
-  // return appointmentsForDays;
-
   const filteredDays = state.days.filter((day_) => day_.name === day);
   const appointmentArray =
     filteredDays.length !== 0
@@ -21,7 +7,6 @@ export function getAppointmentsForDay(state, day) {
         )
       : [];
   return appointmentArray;
-  // }
 }
 
 export function getInterview(state, interview) {
