@@ -6,9 +6,9 @@ This application is built using ltechnologies like React, Storybook, Jest and Cy
 
 ## Final Product
 
-!["Delete appointmoint https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-deleting.png"]
-!["Editing appointment https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-edit.png"]
-!["Saving appointment https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-saving.png"]
+!["Delete appointmoint"] (https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-deleting.png)
+!["Editing appointment"] (https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-edit.png)
+!["Saving appointment"] (https://github.com/BelenMaru/scheduler/blob/master/docs/appointment-saving.png)
 
 
 ## Setup
