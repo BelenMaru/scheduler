@@ -1,5 +1,9 @@
 Interview Scheduler
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e16b541726b588837154d3dbad2e8263740f818
 Interview Scheduler is a React-based web application that enable users to create, update and cancel appointments.
 This application is built using ltechnologies like React, Storybook, Jest and Cypress testing library.
 
@@ -32,3 +36,7 @@ npm test
 npm run storybook
 ```
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e16b541726b588837154d3dbad2e8263740f818
