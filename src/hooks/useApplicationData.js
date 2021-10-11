@@ -9,14 +9,11 @@ export default function useApplicationData(props) {
     interviewers: {},
   });
 
-  // Update spot
+  // Update spot to loop through each days array,days appointment array,check if null and set number to spots remaining without mutating state
 
   const spotsRemaining = (day, appointments) => {
-    //  console.log('day!!!!!!', day);
     const dayFound = state.days.find((dayObj) => dayObj.name === day);
-    // console.log('dayFound!!!!!!', dayFound);
     const apptList = dayFound.appointments.map((appId) => appointments[appId]);
-    // console.log('appointments!!!!!', appointments)
     const numOfSpots = apptList.filter(
       (appointment) => appointment.interview === null
     ).length;
@@ -56,6 +53,9 @@ export default function useApplicationData(props) {
           appointments,
           days: updatedDays,
         });
+      })
+      .catch((error) => {
+        throw error;
       });
   }
 
@@ -70,7 +70,6 @@ export default function useApplicationData(props) {
     };
 
     const numOfSpots = spotsRemaining(state.day, appointments);
-    // console.log('numOfSpots!!!!!!', numOfSpots)
     const updatedDays = state.days.map((dayObj) => {
       if (dayObj.appointments.includes(id)) {
         const newDay = { ...dayObj, spots: numOfSpots };

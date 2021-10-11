@@ -31,7 +31,6 @@ export default function Appointment(props) {
 
   // Saving appointments
   function save(name, interviewer) {
-    // console.log(name, interviewer);
     const interview = {
       student: name,
       interviewer,
@@ -39,12 +38,7 @@ export default function Appointment(props) {
     transition(SAVING);
     props
       .bookInterview(props.id, interview)
-      .then(
-        () => transition(SHOW),
-        (error) => {
-          console.log(save);
-        }
-      )
+      .then(() => transition(SHOW))
       .catch((error) => transition(ERROR_SAVE, true));
   }
 
@@ -107,18 +101,6 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && (
         <Error message="Could not cancel appointment." onClose={() => back()} />
       )}
-
-      {/* <Header time={props.time} />
-      {props.interview ? (
-        <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
-          onEdit={props.onEdit}
-          onDelete={props.onDelete}
-        />
-      ) : (
-        <Empty onAdd={props.onAdd} />
-      )} */}
     </article>
   );
 }
