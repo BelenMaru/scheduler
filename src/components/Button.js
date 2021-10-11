@@ -4,8 +4,6 @@ import classNames from "classnames";
 
 import "components/Button.scss";
 
-import Form from "components/Appointment/Form";
-
 export default function Button(props) {
   const buttonClass = classNames("button", {
     "button--confirm": props.confirm,
